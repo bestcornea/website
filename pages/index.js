@@ -27,13 +27,14 @@ const ReadMore = ({ href, t }) => (
 const HomePage = (props) => {
   const app = useApp('/', props.locale)
   const { t } = useTranslation()
+
   return (
     <Page app={app} title="FIXME" layout={Layout}>
 
       <div className="flex flex-col items-center gap-8 justify-center py-6 mt-24">
         <Logo className="w-2/3 sm:w-64" theme={app.theme}/>
         <h2 className="block border-0 mb-0 pb-0">DSAEK<span role="img" className="px-4">⚔️</span>DMEK</h2>
-        <p className="px-4 text-lg text-center mb-8 max-w-lg">{t('studyTagline')}</p>
+        <p className="px-4 text-lg text-center mb-8 max-w-lg">{t('studyTagline', props.locale)}</p>
         <div className="flex flex-row flex-wrap justify-center gap-8 md:gap-12 py-16 md:py-24 bg-primary text-primary-content w-full px-4">
           {order.map(partner => {
             const Components = logos[partner]
@@ -77,7 +78,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       locale,
-      ...(await serverSideTranslations('en')),
+      ...(await serverSideTranslations(locale)),
     },
   }
 }
