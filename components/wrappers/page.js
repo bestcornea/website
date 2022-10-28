@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { useRouter } from 'next/router'
-import { useHotkeys } from 'react-hotkeys-hook'
-// Layouts components
 import LayoutWrapper from 'components/wrappers/layout'
 import Docs from 'components/layouts/docs'
-// Modal
-import Modal from 'components/modal'
 import Loader from 'components/loader'
 
 /* This component should wrap all page content */
 const PageWrapper = ({
   title = 'FIXME: No title set',
-  noSearch = false,
   app = false,
   layout = Docs,
   crumbs = false,
@@ -29,22 +24,10 @@ const PageWrapper = ({
 
   useEffect(() => app.setSlug(slug), [slug])
 
-  // Trigger search with Ctrl+k
-  useHotkeys('ctrl+k', (evt) => {
-    evt.preventDefault()
-    setSearch(true)
-  })
-
-  const [search, setSearch] = useState(false)
-
   const childProps = {
     app: app,
     title: title,
     crumbs: crumbs,
-    search,
-    setSearch,
-    toggleSearch: () => setSearch(!search),
-    noSearch: noSearch,
   }
 
   const Layout = layout
@@ -59,7 +42,6 @@ const PageWrapper = ({
       <LayoutWrapper {...childProps}>
         {Layout ? <Layout {...childProps}>{children}</Layout> : children}
       </LayoutWrapper>
-      {app.popup && <Modal cancel={() => app.setPopup(false)}>{app.popup}</Modal>}
       {app.loading && <Loader />}
     </div>
   )

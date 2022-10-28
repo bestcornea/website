@@ -4,12 +4,11 @@ import LocalePicker from 'components/locale-picker.js'
 import ThemePicker from 'components/theme-picker.js'
 import CloseIcon from 'components/icons/close.js'
 import MenuIcon from 'components/icons/menu.js'
-import SearchIcon from 'components/icons/search.js'
 import Ribbon from 'components/ribbon.js'
 import { WordMark } from 'components/wordmark.js'
 import Logo from 'components/logos/best.js'
 
-const Header = ({ app, setSearch }) => {
+const Header = ({ app }) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [show, setShow] = useState(true)
 

@@ -1,48 +1,22 @@
 import Page from 'components/wrappers/page.js'
 import useApp from 'hooks/useApp.js'
 import Layout from 'components/layouts/bare'
-import Head from 'next/head'
-import Popout from 'components/popout'
-import PageLink from 'components/page-link'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
+import Link from 'next/link'
+import Logo from 'components/logos/best.js'
 
 const Page404 = (props) => {
   const app = useApp()
+  const { t } = useTranslation()
 
   return (
     <Page app={app} title="404: Page not found" layout={Layout}>
-      <Head>
-        <meta property="og:title" content="Page not found" key="title" />
-        <meta property="og:type" content="article" key="type" />
-        <meta
-          property="og:description"
-          content="There's nothing here. If you followed a link to get here, that link is broken"
-          key="description"
-        />
-        <meta property="og:article:author" content="Joost De Cock" key="author" />
-        <meta property="og:image" content={`fixme`} key="image" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:url" content={`https://bestcornea.eu/`} key="url" />
-        <meta property="og:locale" content="en_US" key="locale" />
-        <meta property="og:site_name" content="bestcornea.eu" key="site" />
-      </Head>
-      <div className="flex flex-col gap-4 mt-16 lg:mt-32 text-center">
-        <h1>404: Page not found</h1>
-        <div className="m-auto max-w-3xl px-4">
-          <div className="max-w-md m-auto px-12 mb-4">
-          </div>
-          <h2>We could not find what you are looking for</h2>
-          <div className="text-left">
-            <Popout comment by="joost">
-              <h5>Did you arrive here from a link?</h5>
-              <p>In that case, that link is broken.</p>
-              <p>
-                If it was one of our links, please <PageLink href="/contact" txt="let us know" /> so
-                we can fix it.
-              </p>
-            </Popout>
-          </div>
+      <div className="flex flex-col items-center gap-8 justify-center py-6 mt-24">
+        <Link href="/"><a><Logo className="w-2/3 sm:w-64" theme={app.theme}/></a></Link>
+        <div className="py-36 text-center">
+        <h1>404: {t('404')}</h1>
+        <span className="text-7xl" role="img">🤔</span>
         </div>
       </div>
     </Page>
@@ -50,3 +24,13 @@ const Page404 = (props) => {
 }
 
 export default Page404
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      locale,
+      ...(await serverSideTranslations(locale)),
+    },
+  }
+}
+

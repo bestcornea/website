@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { run } from '@mdx-js/mdx'
 import * as runtime from 'react/jsx-runtime'
-import customComponents from 'components/mdx'
 
 const Null = (props) => null
 
@@ -16,7 +15,6 @@ const MdxWrapper = ({mdx, app, t, components={}}) => {
   }, [mdx])
 
   const allComponents = {
-    ...customComponents(app, t),
     ...components
   }
   const MdxContent = mdxModule ? mdxModule.default : Null

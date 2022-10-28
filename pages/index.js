@@ -1,17 +1,12 @@
 import Page from 'components/wrappers/page.js'
 import useApp from 'hooks/useApp.js'
-import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Layout from 'components/layouts/bare'
-import { Icons } from 'components/navigation/primary'
-import Popout from 'components/popout'
-import WebLink from 'components/web-link'
-import PageLink from 'components/page-link'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-
 import { logos, links, order } from 'components/logos/index.js'
 import Logo from 'components/logos/best.js'
+
 // Classes
 const link = 'hover:pointer hover:-translate-y-2 transition ease-out duration-200'
 const logoSize = "h-16 sm:h-20 md:h-24 -mt-8"

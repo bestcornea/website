@@ -13,7 +13,7 @@ const Footer = ({ app }) => {
   return (
     <footer className="bg-base-200 border-t-2 bg-opacity-30">
       <div className="flex flex-row justify-center pt-16 pb-8">
-        <Link href="/"><Logo className="h-32" theme={app.theme}/></Link>
+        <Link href="/"><a><Logo className="h-32 hover:cursor-pointer" theme={app.theme}/></a></Link>
       </div>
       <div className="flex flex-row flex-wrap justify-center gap-8 md:gap-12 py-16 md:py-24 w-full px-4">
         {order.map(partner => {
