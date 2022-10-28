@@ -19,7 +19,6 @@ const Aside = ({ app, slug, mobileOnly = false, before = [], after = [] }) => (
     <div>
       {before}
       <MainSections app={app} active={slug} />
-      <ActiveSection app={app} active={slug} />
       {after}
     </div>
   </aside>

@@ -54,7 +54,7 @@ const Header = ({ app, setSearch }) => {
               {app.primaryMenu ? <CloseIcon /> : <MenuIcon />}
             </button>
             <div className="absolute -top-64 lg:top-0 lg:relative lg:block">
-              <Link href="/"><a><Logo  className="h-8 ml-4"/></a></Link>
+              <Link href="/"><a><Logo  className="h-8 ml-4" theme={app.theme}/></a></Link>
             </div>
           </div>
           <div className="flex flex-row items-center lg:hidden pr-4">

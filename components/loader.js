@@ -8,13 +8,13 @@ const Loader = ({}) => (
     `}
   >
     <div
-      className="m-auto lightbox bg-neutral bg-opacity-20 p-2 mask mask-squircle"
+      className="m-auto lightbox bg-neutral bg-opacity-70 p-12 mask mask-squircle"
       style={{
         maxHeight: 'calc(100vh - 6rem)',
         maxWidth: 'calc(100vw - 6rem)',
       }}
     >
-      <Spinner className="w-36 h-36" />
+      <Spinner className="w-36 h-36 text-neutral-content" />
     </div>
   </div>
 )

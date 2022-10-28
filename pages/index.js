@@ -7,112 +7,76 @@ import { Icons } from 'components/navigation/primary'
 import Popout from 'components/popout'
 import WebLink from 'components/web-link'
 import PageLink from 'components/page-link'
-import { WordMark } from 'components/wordmark'
+import { useTranslation } from 'next-i18next'
+import Link from 'next/link'
 
+import { logos, links, order } from 'components/logos/index.js'
 import Logo from 'components/logos/best.js'
-import ChuLogo from 'components/logos/chu.js'
-import ImeldaLogo from 'components/logos/imelda.js'
-import KceLogo from 'components/logos/kce.js'
-import MmLogo from 'components/logos/mm.js'
-import OkLogo from 'components/logos/ok.js'
-import StJanLogo from 'components/logos/stjan.js'
-import UlbLogo from 'components/logos/ulb.js'
-import UzaLogo from 'components/logos/uza.js'
-import UzbLogo from 'components/logos/uzb.js'
-import UzgLogo from 'components/logos/uzg.js'
-import UzlLogo from 'components/logos/uzl.js'
-import ZolLogo from 'components/logos/zol.js'
+// Classes
+const link = 'hover:pointer hover:-translate-y-2 transition ease-out duration-200'
+const logoSize = "h-16 sm:h-20 md:h-24 -mt-8"
 
-const logoSize = "h-24"
+const ReadMore = ({ href, t }) => (
+  <Link href={href}>
+    <a className="btn btn-lg btn-primary mt-4">
+      {t('readMore')}
+    </a>
+  </Link>
+)
 
-const HomePage = () => {
-  const app = useApp()
-
+const HomePage = (props) => {
+  const app = useApp('/', props.locale)
+  const { t } = useTranslation()
   return (
     <Page app={app} title="FIXME" layout={Layout}>
+
       <div className="flex flex-col items-center gap-8 justify-center py-6 mt-24">
-        <Logo className="w-2/3 sm:w-64" />
-        
-          <h2 className="block border-0">DSAEK<span role="img" className="px-4">⚔️</span>DMEK</h2>
+        <Logo className="w-2/3 sm:w-64" theme={app.theme}/>
+        <h2 className="block border-0 mb-0 pb-0">DSAEK<span role="img" className="px-4">⚔️</span>DMEK</h2>
+        <p className="px-4 text-lg text-center mb-8 max-w-lg">{t('studyTagline')}</p>
+        <div className="flex flex-row flex-wrap justify-center gap-8 md:gap-12 py-16 md:py-24 bg-primary text-primary-content w-full px-4">
+          {order.map(partner => {
+            const Components = logos[partner]
+            return <a key={partner} className={link} href={links[partner]}><Components className={logoSize}/></a>
+          })}
+        </div>
       </div>
-      <div>
-        <div className="max-w-7xl m-auto lg:my-32 px-4">
-          <div className="flex flex-row flex-wrap gap-4 justify-between">
-            <div className="max-w-xl">
-              <h3>{app.navigation.about.__title}</h3>
-              <p>Fixme</p>
-            </div>
-            <div className="max-w-xl">
-              <h3>{app.navigation.info.__title}</h3>
-              <p>Fixme</p>
-            </div>
+
+      <div className="max-w-7xl m-auto lg:my-32 px-4">
+        <div className="flex flex-row flex-wrap gap-8 lg:gap-16 justify-center">
+          <div className="max-w-xl">
+            <h3>{app.navigation.info.__title}</h3>
+            <p>{app.navigation.info.__lead}</p>
+            <ReadMore href="/info" t={t}/>
           </div>
-        </div>
-        <div className="flex flex-row flex-wrap justify-center gap6">
-          <ChuLogo    className={logoSize}/>
-          <ImeldaLogo className={logoSize}/>
-          <KceLogo    className={logoSize}/>
-          <MmLogo     className={logoSize}/>
-          <OkLogo     className={logoSize}/>
-          <StJanLogo  className={logoSize}/>
-          <UlbLogo    className={logoSize}/>
-          <UzaLogo    className={logoSize}/>
-          <UzbLogo    className={logoSize}/>
-          <UzgLogo    className={logoSize}/>
-          <UzlLogo    className={logoSize}/>
-          <ZolLogo    className={logoSize}/>
-        </div>
-        <div className="flex flex-row flex-wrap justify-center gap6 mt-24">
-          <ChuLogo    brand className={logoSize}/>
-          <ImeldaLogo brand className={logoSize}/>
-          <KceLogo    brand className={logoSize}/>
-          <MmLogo     brand className={logoSize}/>
-          <OkLogo     brand className={logoSize}/>
-          <StJanLogo  brand className={logoSize}/>
-          <UlbLogo    brand className={logoSize}/>
-          <UzaLogo    brand className={logoSize}/>
-          <UzbLogo    brand className={logoSize}/>
-          <UzgLogo    brand className={logoSize}/>
-          <UzlLogo    brand className={logoSize}/>
-          <ZolLogo    brand className={logoSize}/>
-        </div>
-        <div className="w-full m-auto lg:my-32">
-          <div
-            className="bg-cover bg-neutral w-full bg-center shadow p-4 py-12"
-            style={{ backgroundImage: 'url(/img/splash.jpg)' }}
-          >
-            <div className="max-w-6xl flex flex-row items-center justify-center">
-              <div>
-                <h2 className="text-neutral-content p-4 text-4xl font-bold sm:font-light sm:text-6xl drop-shadow w-1/2 border-0">
-                  Partners
-                </h2>
-                <p className="text-neutral-content p-4 font-bold max-w-md text-lg drop-shadow">
-                  The BEST Cornea study is a collaboration between 11 Belgian hospitals with the financial support of the Belgian Healthcare Knowledge Center
-                </p>
-                <a
-                  role="button"
-                  className="btn btn-accent btn-wide ml-4 mb-8"
-                  href="fixme"
-                >
-                  Learn more
-                </a>
-              </div>
-              <div className="w-1/2 bg-base-100 bg-opacity-50 rounded-lg p-4">
-                <img src="/logos/partners.svg" />
-              </div>
-            </div>
+          <div className="max-w-xl">
+            <h3>{app.navigation.contact.__linktitle}</h3>
+            <p>{app.navigation.contact.__lead}</p>
+            <ReadMore href="/contact" t={t}/>
+          </div>
+          <div className="max-w-xl">
+            <h3>{app.navigation.about.__title}</h3>
+            <p>{app.navigation.about.__lead}</p>
+            <ReadMore href="/about" t={t}/>
+          </div>
+          <div className="max-w-xl">
+            <h3>{app.navigation.partners.__title}</h3>
+            <p>{app.navigation.partners.__lead}</p>
+            <ReadMore href="/partners" t={t}/>
           </div>
         </div>
       </div>
+
     </Page>
   )
 }
 
 export default HomePage
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   return {
     props: {
+      locale,
       ...(await serverSideTranslations('en')),
     },
   }

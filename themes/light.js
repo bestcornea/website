@@ -43,14 +43,14 @@ module.exports = {
   // base-200: A slightly darker background color, used for hovers and so on
   'base-200': colors.neutral['200'],
   // base-300: A shade midway between dark and light
-  'base-300': colors.neutral['500'],
+  'base-300': colors.neutral['300'],
   // base-content: The default text color for a regular page (docs and so on)
   'base-content': colors.neutral['700'],
 
   // primary: The main brand color and color of the primary button
-  primary: colors.violet['500'],
+  primary: colors.cyan['600'],
   // primary-focus: The :hover color for the primary button
-  'primary-focus': colors.violet['600'],
+  'primary-focus': colors.cyan['600'],
   // primary-content: The text color on a primary button
   'primary-content': colors.neutral['50'],
 
@@ -106,9 +106,11 @@ module.exports = {
    */
   '--theme-gradient': `repeating-linear-gradient(
     90deg,
-    ${colors.gray[900]} 0,
-    ${colors.yellow[400]} 50%,
-    ${colors.red[400]} 100%
+    ${colors.cyan[300]} 0,
+    ${colors.cyan[600]} 25%,
+    ${colors.cyan[300]} 50%,
+    ${colors.cyan[600]} 75%,
+    ${colors.cyan[300]} 100%
   )`,
 
   /* VARIOUS
