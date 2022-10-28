@@ -60,8 +60,8 @@ const HomePage = (props) => {
             <ReadMore href="/about" t={t}/>
           </div>
           <div className="max-w-xl">
-            <h3>{app.navigation.partners.__title}</h3>
-            <p>{app.navigation.partners.__lead}</p>
+            <h3>{t('partners')}</h3>
+            <p>{t('partnersLead')}</p>
             <ReadMore href="/partners" t={t}/>
           </div>
         </div>

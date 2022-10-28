@@ -8,7 +8,6 @@ import TocWrapper from 'components/wrappers/toc'
 
 const PublicSanityPage = (props) => {
   const app = useApp(props.page.slug, props.locale)
-  
   return (
     <Page app={app} title={props.title} {...props.page}>
       <div className="grid grid-cols-3 lg:gap-4">

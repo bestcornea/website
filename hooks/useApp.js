@@ -17,7 +17,7 @@ function useApp(pageSlug='/', pageLanguage='en') {
   const [slug, setSlug] = useState(pageSlug)
   const [language, setLanguage] = useState(pageLanguage)
   const [navigation, setNavigation] = useState(preNavigation[language])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [popup, setPopup] = useState(false)
 
   useEffect(() => {
